@@ -17,8 +17,6 @@ Read the mod project's instructions and current worktree status. Resolve only th
 - For custom windows, HUD integration, layout, or data bindings, read [ck3-gui](../ck3-gui/SKILL.md). Read scripting references here when the interface also changes game behavior.
 - For a live checklist run, visual verification, or retesting a runtime fix, read [ck3-playtest](../ck3-playtest/SKILL.md). A project's own playtesting skill supplies its scenarios and local tools.
 
-Install the three CK3 skill directories together when using direct installation. They share references. Ordinary script work does not require loading GUI or playtesting instructions until that workflow is needed.
-
 ## Author and validate
 
 1. Identify the entry point, affected state, and every reader of that state. A decision that starts a scheme needs the decision gates, scheme completion path, AI behavior, and visible feedback to agree.

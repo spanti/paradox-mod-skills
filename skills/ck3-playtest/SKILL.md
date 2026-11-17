@@ -5,7 +5,7 @@ description: Run or resume Crusader Kings III mod playtests, inspect live behavi
 
 # CK3 Playtesting
 
-Test requested behavior through the running game. Distinguish a source edit from a verified fix. Install alongside `ck3-modding` for shared environment, scripting, and validation references.
+Test requested behavior through the running game. Distinguish a source edit from a verified fix. Use `ck3-modding` for shared environment, scripting, and validation references.
 
 ## Establish the session
 
@@ -25,7 +25,7 @@ Preserve existing campaigns. Use a separate non-Ironman test campaign and named 
 4. For visual work, inspect the rendered game at normal settings: clipping, contrast, art crops, tooltips, scrolling, disabled states, and hit areas. Use fresh observations for input; old coordinates are not durable navigation.
 5. Inspect fresh logs after reproduction. Preserve failure evidence before fixing it. An execution acknowledgement proves that control reached the marker, not that the intended state changed.
 
-Fix confirmed bugs when the task authorizes fixes, using [ck3-modding](../ck3-modding/SKILL.md) or [ck3-gui](../ck3-gui/SKILL.md). A review-only request remains review-only. Run static validation after editing, then repeat the affected normal entry path. Do not broaden the session into new features or repeated smoke checks.
+Fix confirmed bugs when the task authorizes fixes, using [ck3-modding](../ck3-modding/SKILL.md) or [ck3-gui](../ck3-gui/SKILL.md). A review-only request remains review-only. Run static validation after editing, then repeat the affected normal entry path. If the validator is unavailable, record it as `NOT RUN` and continue the remaining authorized runtime checks. Do not broaden the session into new features or repeated smoke checks.
 
 ## Track reloads separately
 

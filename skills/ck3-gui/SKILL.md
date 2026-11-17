@@ -5,7 +5,7 @@ description: Build and fix Crusader Kings III interfaces, including custom windo
 
 # CK3 GUI
 
-Build the requested screen with native CK3 widgets and verify both its appearance and game-state bindings. Install alongside `ck3-modding`, which owns the shared environment and scripting references.
+Build the requested screen with native CK3 widgets and verify both its appearance and game-state bindings. Use `ck3-modding` for shared environment and scripting references.
 
 ## Establish the surface
 
@@ -27,7 +27,7 @@ For script behavior, follow [ck3-modding](../ck3-modding/SKILL.md). Keep gamepla
 
 ## Verify
 
-Run ck3-tiger with the project's configuration. Inspect the screen in-game when controls are available and authorized. A layout preview helps iteration but does not validate live data contexts or script execution.
+Run ck3-tiger with the project's configuration when its executable is resolved, following [validation.md](../ck3-modding/references/validation.md). If tiger is unavailable, complete the remaining static checks and report tiger as `NOT RUN`. Inspect the screen in-game when controls are available and authorized. A layout preview helps iteration but does not validate live data contexts or script execution.
 
 Use a separate test campaign for state-changing checks. Confirm the screen reopened after reload and shows the edited build. Check normal display settings, long text, scroll reachability, tooltip occlusion, enabled and disabled states, hit areas, empty lists, and range endpoints when relevant to the change.
 

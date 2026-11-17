@@ -25,14 +25,20 @@ From https://github.com/amtep/tiger, the same project as ck3-tiger. Victoria 3 i
 target there, released in lockstep with CK3, with per-OS archives named
 `vic3-tiger-windows-<version>.zip`.
 
+Resolve `<tiger>` once per session. Reuse a verified `px.tigerPath` from workspace or user editor settings, then probe `vic3-tiger` on `PATH` and these Paradox Toolkit download locations:
+
+- Windows: `%APPDATA%/Code/User/globalStorage/jdeffner.px-toolkit/tiger-vic3/*/vic3-tiger.exe`
+- Linux: `~/.config/Code/User/globalStorage/jdeffner.px-toolkit/tiger-vic3/*/vic3-tiger`
+
+The selected executable is resolved when `"<tiger>" --version` reports `vic3-tiger`. If this single pass leaves it unresolved, ask once for its path or installation, continue source checks, and report tiger as `NOT RUN`. The examples below use the command name; substitute the resolved path when it is not on `PATH`.
+
 **Invocation takes the mod directory**, not a descriptor file:
 
 ```bash
 vic3-tiger "<mods>/my_mod"
 ```
 
-Add paths when auto-detection fails, which it will whenever Steam or Documents sits on a
-non-default drive:
+Add paths when auto-detection fails, such as with a custom Steam library or redirected Documents folder:
 
 ```bash
 vic3-tiger --game "<steam library>/steamapps/common/Victoria 3" --paradox "<user documents>/Paradox Interactive/Victoria 3" "<mods>/my_mod"

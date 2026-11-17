@@ -5,8 +5,6 @@ description: Create, change, and debug Victoria 3 mods, including buildings, pro
 
 # Victoria 3 Modding
 
-The maintained source is `skills/vic3-modding/` in this repository. Keep local paths in the mod project. Edit the source repository, then update installed copies.
-
 In commands below, <skill> means the absolute directory containing this SKILL.md. Resolve it from the loaded skill location and substitute it before running commands. It is not an environment variable. The lookup script uses Python 3 with no third-party dependencies.
 
 Victoria 3 mods are Paradox (Jomini) script: `.txt` databases under `common/` and `events/`,
@@ -16,31 +14,31 @@ encoding, a folder typo, or an unbalanced brace makes the game ignore the file w
 Victoria 3 documents itself better than most Paradox games. Three first-party sources cover
 almost every factual question, so answer from them rather than from memory.
 
-## Step 0: resolve this machine's paths
+## Resolve this machine's paths
 
-Detect these once per session. Ask the user only when detection fails. Everywhere below,
-`<game>`, `<docs>`, `<logs>`, `<mods>` and `<tiger>` mean these.
-
-| Placeholder | What | Typical location |
-|---|---|---|
-| `<game>` | **Base game data, the primary source of truth** | `<steam library>\steamapps\common\Victoria 3\game`. Default library `C:\Program Files (x86)\Steam`; others are listed in `<steam>\steamapps\libraryfolders.vdf`. Linux: `~/.local/share/Steam/...` |
-| `<docs>` | `script_docs` dumps | `<user documents>\Paradox Interactive\Victoria 3\docs`. **Not** the `logs` folder. Documents is often redirected to another drive or OneDrive, so resolve it rather than assuming `C:`. |
-| `<logs>` | `error.log`, `database_conflicts.log`, `data_types/` | `<user documents>\Paradox Interactive\Victoria 3\logs` |
-| `<mods>` | Where mods are developed | `<user documents>\Paradox Interactive\Victoria 3\mod` |
-| `<tiger>` | vic3-tiger validator executable | Wherever the user installed it. Releases at github.com/amtep/tiger |
-
-Confirm the build before trusting any version-specific claim:
+Run the lookup script once at session start:
 
 ```bash
 python "<skill>/scripts/vic3_docs.py" stats
 ```
 
-That prints the resolved paths, the build number, folder and schema-doc counts, how many
-identifiers each dump holds, and how stale the dumps are. Run it at the start of a session.
+It detects `<game>` and `<docs>` from Steam's library list and the actual Documents folder, then prints the resolved paths, build, schema coverage, identifier counts, and dump freshness. Reuse verified project paths with `--game`/`--docs` or `VIC3_GAME`/`VIC3_DOCS`. If a required path remains `NOT FOUND` after configured paths and this probe, ask once for that path and continue independent work.
+
+Resolve the remaining paths only when the task needs them:
+
+| Placeholder | What | Location or lookup |
+|---|---|---|
+| `<game>` | Base game data, the primary source of truth | `<steam library>/steamapps/common/Victoria 3/game`; verified by `stats` |
+| `<docs>` | `script_docs` dumps, separate from `logs` | `<user documents>/Paradox Interactive/Victoria 3/docs`; verified by `stats` |
+| `<logs>` | `error.log`, `database_conflicts.log`, `data_types/` | `<user documents>/Paradox Interactive/Victoria 3/logs` |
+| `<mods>` | Mod development directory | `<user documents>/Paradox Interactive/Victoria 3/mod` |
+| `<tiger>` | vic3-tiger executable, needed only for validation | [Bounded lookup and validation](references/validation.md) |
+
+Documents can be redirected to another drive or OneDrive; use its actual location. Keep machine paths in project-local configuration or the environment variables above, not in this portable skill.
 
 ## The three sources of truth
 
-**1. The 91 `*.md` schema docs shipped inside `<game>`.** These are Paradox's own annotated
+**1. The `*.md` schema docs shipped inside `<game>`.** These are Paradox's own annotated
 schemas, the Victoria 3 equivalent of CK3's `_*.info` files, and they sit inside the folder they
 document (`common/buildings/buildings.md`, `common/journal_entries/journal_entries.md`). They
 give the legal keys of a definition, each key's type, its default, and often the scope it runs
@@ -51,7 +49,7 @@ with:
 python "<skill>/scripts/vic3_docs.py" folders <folder-name-fragment>
 ```
 
-Only 75 of the 135 `common/` subfolders ship one, and `events/` ships none. Notably `decisions`,
+Some `common/` subfolders ship no schema doc, and `events/` ships none; `folders` reports the installed coverage. Notably `decisions`,
 `interest_groups`, `scripted_effects`, `state_traits` and `subject_types` are undocumented, so
 for those a vanilla `.txt` in the folder is the reference. `decisions` is a special case: it has
 no `.md` but does ship `common/decisions/000_decisions_help.txt`.
@@ -60,8 +58,8 @@ Where a doc and a vanilla file disagree, **the vanilla file wins**. These docs d
 `buildings.md` documents a `construction_points` field that live building files replace with
 `required_construction`.
 
-**2. The `script_docs` dumps in `<docs>`.** Roughly 12,800 identifiers: every effect, trigger,
-modifier, event target, on_action and custom localization key the installed build knows, with
+**2. The `script_docs` dumps in `<docs>`.** The effects, triggers,
+modifiers, event targets, on_actions and custom localization keys the installed build knows, with
 its supported scopes. This is the vocabulary. Never invent an effect or trigger name; check it:
 
 ```bash
@@ -77,7 +75,7 @@ If `<docs>` is missing or stale, ask the user to launch with `-debug_mode` and r
 and `dump_data_types` in the console, then read the files yourself.
 
 **3. Vanilla files.** Copy a working vanilla definition and modify it. This is faster and safer
-than writing from scratch, and it is the only reference for the 62 undocumented folders.
+than writing from scratch, and it is the reference for folders without schema docs.
 
 ## Golden rules
 
@@ -108,8 +106,8 @@ than writing from scratch, and it is the only reference for the 62 undocumented 
 12. Prefer `REPLACE:my_object = { ... }` or `INJECT:my_object = { ... }` over copying a whole
     vanilla file. These key prefixes patch one object and leave the rest of the file alone.
     Victoria 3 has them and CK3 does not.
-13. Validate with **vic3-tiger** before asking the user to test in-game
-    (see [references/validation.md](references/validation.md)). It takes the mod **directory**,
+13. Validate with **vic3-tiger** before asking the user to test in-game when its executable is resolved
+    (see [references/validation.md](references/validation.md) for lookup and fallback). It takes the mod **directory**,
     not a descriptor file.
 
 ## Workflow
@@ -119,7 +117,7 @@ than writing from scratch, and it is the only reference for the 62 undocumented 
 3. Verify every identifier you intend to write with `vic3_docs.py find`.
 4. Write a new file carrying the mod's prefix, in the correct folder, UTF-8 with BOM.
 5. Add localization for every new key.
-6. Run vic3-tiger. Fix Fatal and Error, then Warning.
+6. Run vic3-tiger when resolved; otherwise record `NOT RUN` and complete source checks. Triage Fatal and Error before Warning.
 7. Ask the user to test in-game, then read `<logs>\error.log` yourself. Do not ask them what it says.
 
 ## Routing table
