@@ -9,9 +9,7 @@ Implement the requested CK3 behavior using the installed game's schemas and work
 
 ## Establish the environment
 
-Read the mod project's instructions and current worktree status. Reuse its confirmed game, log, mod, Workshop, and tiger paths. If they are missing, read [environment.md](references/environment.md). Keep machine paths and project rules in the project, not in this portable skill. Never edit the game installation or subscribed Workshop sources.
-
-The maintained source is `skills/` in this repository. Installed caches and copied skills are deployment copies. Make reusable corrections in the source repository, then update the installation. Do not regenerate skills from the old Paradox Toolkit repository.
+Read the mod project's instructions and current worktree status. Resolve only the paths this task needs: game sources, logs, mod/Workshop sources, or tiger. Reuse verified paths from project instructions and tool settings; otherwise make one bounded discovery pass with [environment.md](references/environment.md). A path counts as resolved only after its verification check passes. If a required path remains unresolved, ask once for that path and continue independent work. Keep machine paths in existing project-local configuration, not in this portable skill. Never edit the game installation or subscribed Workshop sources.
 
 ## Choose the workflow
 
@@ -27,7 +25,7 @@ Install the three CK3 skill directories together when using direct installation.
 2. Read the relevant installed `_*.info` schema and a working vanilla example. Use a fresh `script_docs` dump for exact effect, trigger, and scope signatures. Check the installed build and dump timestamps. Workshop patterns may depend on that mod's own definitions and assets.
 3. Make the smallest change that implements the request. Use the project's filename prefix and mirror the game's directory structure. Prefer additive files or single-object overrides where supported. Consult [setup.md](references/setup.md) for database-specific merge rules; do not assume all script and history files merge alike.
 4. Check player and AI paths, success and failure outcomes, costs, cooldowns, and localization. For AI weights, copy the system's native structure and account for intended character behavior. Add all title, description, option, tooltip, and confirmation keys the changed entry point reads.
-5. Run the installed ck3-tiger with the project's configuration. Fix errors introduced by the change and distinguish pre-existing or version-related diagnostics. Enable relevant localization checks for localization work. See [validation.md](references/validation.md).
+5. Run ck3-tiger with the project's configuration when its executable is resolved. Fix errors introduced by the change and distinguish pre-existing or version-related diagnostics. Enable relevant localization checks for localization work. If tiger is unavailable, complete source checks and report tiger as `NOT RUN` with the single missing path or installation action. See [validation.md](references/validation.md).
 6. Test behavior that needs the live engine through the actual entry point. Use available authorized game controls, or give the user the exact manual step that is missing. Read fresh logs yourself. Report static results separately from runtime results and identify checks still open.
 
 ## Invariants

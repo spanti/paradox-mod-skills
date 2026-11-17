@@ -7,16 +7,16 @@ BEFORE telling the user to test in-game. After a game update, check validator su
 **Install:** grab the release matching the game version from github.com/amtep/tiger (Windows and
 Linux builds; each ships `ck3-tiger`, the zero-config `ck3-tiger-auto`, a sample `ck3-tiger.conf`,
 and docs `filter.md`/`annotations.md`). `<tiger>` below = the full path to the ck3-tiger
-executable on this machine (environment.md); its sibling files (`ck3-tiger-auto`, `ck3-tiger.conf`,
-`filter.md`) live in the same folder. A Linux build for headless sandbox runs, if installed, sits
-next to the Windows install folder as a `ck3-tiger-linux-<version>` sibling — list the parent
-folder of `<tiger>` to find it. The CK3 Modding Toolkit VS Code extension (`JDeffner.ck3-modding-toolkit`) can also download it for you
-(command "CK3 Tiger: Download or Update Binary").
+executable on this machine. Resolve it once with [environment.md](environment.md), including its
+missing-tool fallback; its sibling files (`ck3-tiger-auto`, `ck3-tiger.conf`, `filter.md`) live in
+the same folder. A Linux build for headless sandbox runs, if installed, sits next to the Windows
+install folder as a `ck3-tiger-linux-<version>` sibling — list the parent folder of `<tiger>` to
+find it. The Paradox Modding Toolkit VS Code extension (`JDeffner.px-toolkit`) can also download
+it for you (command "Paradox Tiger: Download or Update Binary").
 
 The `.exe` cannot run in a Linux sandbox and the Linux binary cannot run on Windows; pick the one
 that matches the shell the agent actually has. Read `filter.md`/`annotations.md` in the install
-folder for anything not covered here. See "Autonomous validation" below for how an agent runs
-tiger itself.
+folder for anything not covered here. Run tiger through the available shell as described below.
 
 ## Invocation
 

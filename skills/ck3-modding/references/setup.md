@@ -2,7 +2,7 @@
 
 ## Mod structure
 
-Mods live in the **user** directory (`<mods>`, see SKILL.md Step 0), not the install:
+Mods live in the **user** directory (`<mods>`, see [environment.md](environment.md)), not the install:
 - Windows: `%USERPROFILE%\Documents\Paradox Interactive\Crusader Kings III\mod\`
   (Documents may be redirected to another drive or OneDrive)
 - Linux: `~/.local/share/Paradox Interactive/Crusader Kings III/mod/`
