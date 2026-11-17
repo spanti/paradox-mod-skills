@@ -115,6 +115,6 @@ paradox-mod-skills/
 
 ## 来源与许可证
 
-技能内容来源于 [JDeffner/paradox-ai-modding](https://github.com/JDeffner/paradox-ai-modding)，本仓库将其整理为扁平的根插件结构。插件打包方式参考 [mattpocock/skills 的 ADR](https://github.com/mattpocock/skills/tree/main/.agents/adr)。
+技能内容参考 [JDeffner/paradox-ai-modding](https://github.com/JDeffner/paradox-ai-modding)，本仓库将其整理为扁平的根插件结构。插件打包方式参考 [mattpocock/skills 的 ADR](https://github.com/mattpocock/skills/tree/main/.agents/adr)。
 
 本项目使用 [GPL-3.0](LICENSE) 许可证。游戏、模组项目、本机路径和验证工具由使用者提供；静态校验通过不代表游戏内行为已经验证。
