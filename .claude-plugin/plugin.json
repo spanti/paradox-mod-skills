@@ -1,0 +1,24 @@
+{
+  "name": "paradox-mod-skills",
+  "version": "0.1.0",
+  "description": "Grounded Crusader Kings III and Victoria 3 modding, CK3 interface work, and evidence-based playtesting.",
+  "author": {
+    "name": "Joel Deffner"
+  },
+  "license": "GPL-3.0",
+  "repository": "https://github.com/spanti/paradox-mod-skills",
+  "keywords": [
+    "paradox",
+    "ck3",
+    "vic3",
+    "modding",
+    "gui",
+    "playtesting"
+  ],
+  "skills": [
+    "./skills/ck3-modding",
+    "./skills/ck3-gui",
+    "./skills/ck3-playtest",
+    "./skills/vic3-modding"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "paradox-mod-skills",
+  "owner": {
+    "name": "Joel Deffner"
+  },
+  "description": "Skills for CK3 and Victoria 3 modding, interface work, and evidence-based playtesting.",
+  "plugins": [
+    {
+      "name": "paradox-mod-skills",
+      "source": "./",
+      "description": "Grounded CK3 and Victoria 3 modding, CK3 GUI, and playtesting.",
+      "keywords": [
+        "paradox",
+        "ck3",
+        "vic3",
+        "modding"
+      ]
+    }
+  ]
+}
